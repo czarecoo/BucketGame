@@ -14,10 +14,17 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.czareg.game.BucketGame;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import java.util.Iterator;
 
+import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_PROTOTYPE;
+
+@Component
+@Scope(SCOPE_PROTOTYPE)
 public class GameScreen extends ScreenAdapter {
+
     private final BucketGame game;
     private final Texture dropImage;
     private final Texture bucketImage;
@@ -107,6 +114,11 @@ public class GameScreen extends ScreenAdapter {
         }
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)) {
             bucket.x += 400 * Gdx.graphics.getDeltaTime();
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
+            game.setMainMenuScreen();
+            dispose();
+            return;
         }
 
         // make sure the bucket stays within the screen bounds

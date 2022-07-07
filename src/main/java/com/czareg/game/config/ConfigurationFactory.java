@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ConfigurationFactory {
+
     public Lwjgl3ApplicationConfiguration create() {
         Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
         config.setIdleFPS(60);
